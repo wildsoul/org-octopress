@@ -116,7 +116,7 @@ holding export options."
         (published
          (org-jekyll--get-option info :jekyll-published org-jekyll-published))
         (comments
-         (org-jekyll--get-option info :jekyll-comments)))
+         (org-jekyll--get-option info :jekyll-comments))) 
     (unless (equal published "true")
       (setq title (concat "[PREVIEW] " title)))
     (concat
@@ -229,12 +229,16 @@ Return output file name."
   (interactive)
   (let ((layout     (or layout org-jekyll-layout))
         (published  (or published org-jekyll-published))
-        (categories (or categories org-jekyll-categories)))
+        (categories (or categories org-jekyll-categories))
+        (tmp_str ""))
+    (dolist (var (read-lines setupfile))
+      (concat tmp_str var "\n"))
     (save-excursion
       (insert (format (concat
                        "#+TITLE: "             title
                        "\n#+DATE: "              date
-                       "\n#+SETUPFILE: "         setupfile
+                       ;;"\n#+SETUPFILE: "         setupfile
+		       tmp_str
                        "\n#+JEKYLL_LAYOUT: "     layout
                        "\n#+JEKYLL_CATEGORIES: " categories
                        "\n#+JEKYLL_PUBLISHED: "  published
