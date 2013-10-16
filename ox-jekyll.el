@@ -235,6 +235,7 @@ Return output file name."
           (insert (format (concat
                            "#+TITLE: "             title
                            "\n#+DATE: "              date
+                           "\n"
                            tmp_str
                            "\n#+JEKYLL_LAYOUT: "     layout
                            "\n#+JEKYLL_CATEGORIES: " categories
